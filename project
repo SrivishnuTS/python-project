@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Create a synthetic dataset
 np.random.seed(42)  # For reproducibility
 n_samples = 200
 
@@ -18,11 +17,9 @@ data = {
 
 df = pd.DataFrame(data)
 
-# Display the first few rows of the dataset
 print("First few rows of the synthetic dataset:")
 print(df.head())
 
-# Calculate descriptive statistics
 descriptive_stats = df.describe()
 mean_values = df.mean()
 median_values = df.median()
@@ -33,12 +30,10 @@ print("\nMean Values:\n", mean_values)
 print("\nMedian Values:\n", median_values)
 print("\nStandard Deviation Values:\n", std_dev_values)
 
-# Plot histograms for each feature
 df.hist(bins=15, figsize=(15, 10))
 plt.tight_layout()
 plt.show()
 
-# Scatter plot between Alcohol and Malic Acid
 plt.figure(figsize=(10, 6))
 plt.scatter(df['alcohol'], df['malic_acid'], c=df['target'], cmap='viridis', edgecolor='k', s=100)
 plt.title('Scatter Plot of Alcohol vs. Malic Acid')
