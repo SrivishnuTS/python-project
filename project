@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create a synthetic dataset
+np.random.seed(42)  # For reproducibility
+n_samples = 200
+
+data = {
+    'alcohol': np.random.normal(loc=12.5, scale=1.5, size=n_samples),
+    'malic_acid': np.random.normal(loc=2.0, scale=0.5, size=n_samples),
+    'ash': np.random.normal(loc=2.5, scale=0.3, size=n_samples),
+    'alcalinity_of_ash': np.random.normal(loc=20, scale=5, size=n_samples),
+    'magnesium': np.random.normal(loc=100, scale=10, size=n_samples),
+    'total_phenols': np.random.normal(loc=2.0, scale=0.5, size=n_samples),
+    'target': np.random.choice([0, 1, 2], size=n_samples)  # Randomly assigning class labels
+}
+
+df = pd.DataFrame(data)
+
+# Display the first few rows of the dataset
+print("First few rows of the synthetic dataset:")
+print(df.head())
+
+# Calculate descriptive statistics
+descriptive_stats = df.describe()
+mean_values = df.mean()
+median_values = df.median()
+std_dev_values = df.std()
+
+print("\nDescriptive Statistics:\n", descriptive_stats)
+print("\nMean Values:\n", mean_values)
+print("\nMedian Values:\n", median_values)
+print("\nStandard Deviation Values:\n", std_dev_values)
+
+# Plot histograms for each feature
+df.hist(bins=15, figsize=(15, 10))
+plt.tight_layout()
+plt.show()
+
+# Scatter plot between Alcohol and Malic Acid
+plt.figure(figsize=(10, 6))
+plt.scatter(df['alcohol'], df['malic_acid'], c=df['target'], cmap='viridis', edgecolor='k', s=100)
+plt.title('Scatter Plot of Alcohol vs. Malic Acid')
+plt.xlabel('Alcohol')
+plt.ylabel('Malic Acid')
+plt.colorbar(label='Wine Class')
+plt.show()
